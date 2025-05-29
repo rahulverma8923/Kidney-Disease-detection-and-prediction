@@ -60,7 +60,7 @@ protobuf==3.11.2
 pyasn1==0.4.2
 pycryptodome
 pyflakes==1.6.0
-pygobject==3.26.1
+pygobject>=3.42.2
 pymagnitude==0.1.120
 pyodbc==4.0.17
 pyparsing==2.4.6
