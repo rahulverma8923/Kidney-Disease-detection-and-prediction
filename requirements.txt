@@ -23,7 +23,6 @@ filelock==3.0.12
 Flask==1.1.2
 funcsigs==1.0.2
 future==0.18.2
-futures==3.3.0
 gast==0.3.2
 google-pasta==0.1.8
 grpcio==1.26.0
