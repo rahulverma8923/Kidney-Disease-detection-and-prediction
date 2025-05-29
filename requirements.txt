@@ -44,7 +44,6 @@ lz4==2.1.2
 Markdown==3.1.1
 MarkupSafe==1.1.1
 matplotlib==2.2.5
-mercurial==4.5.3
 mock==3.0.5
 monotonic==1.5
 mysql-connector-python==2.1.6
