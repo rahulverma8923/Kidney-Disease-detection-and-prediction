@@ -71,7 +71,7 @@ PyYAML==5.2
 requests==2.24.0
 scandir==1.10.0
 scikit-fuzzy==0.4.2
-scikit-image==0.14.5
+scikit-image>=0.19.0
 scikit-learn==0.20.4
 scipy==1.2.3
 SecretStorage==2.3.1
