@@ -7,7 +7,6 @@ backports.functools-lru-cache==1.6.1
 backports.weakref==1.0.post1
 bidaf-keras==1.0.0
 cassandra-driver==3.19.0
-cassandra-pylib==0.0.0
 certifi==2020.6.20
 chardet==3.0.4
 chrome-driver==2.26.0.1
