@@ -1,9 +1,9 @@
-absl-py>=1.0.0
-annoy==1.14.0
-appdirs==1.4.3
-asn1crypto==0.24.0
+absl-py==2.3.0
+annoy==1.17.3
+appdirs==1.4.4
+asn1crypto==1.5.1
 astor==0.8.1
-backports.functools-lru-cache==1.6.1
+backports.functools-lru-cache==2.0.0
 backports.weakref==1.0.post1
 bidaf-keras==1.0.0
 cassandra-driver==3.19.0
@@ -26,7 +26,7 @@ future==0.18.2
 gast==0.3.2
 google-pasta==0.1.8
 grpcio==1.26.0
-gunicorn
+gunicorn==20.1.0
 h5py==2.10.0
 idna==2.10
 importlib-metadata==1.5.0
