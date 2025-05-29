@@ -43,14 +43,14 @@ kiwisolver==1.1.0
 lz4==2.1.2
 Markdown==3.1.1
 MarkupSafe==1.1.1
-matplotlib==2.2.5
+matplotlib==3.7.1
 mock==3.0.5
 monotonic==1.5
 mysql-connector-python==8.0.33
 networkx==2.2
 nltk==3.8.1
 numpy==1.25.0
-opencv-contrib-python==4.2.0.32
+opencv-contrib-python==4.11.0.86
 pandas==0.24.2
 paramiko==2.0.0
 pathlib2==2.3.5
