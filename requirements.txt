@@ -58,7 +58,7 @@ pexpect==4.2.1
 Pillow==6.2.2
 protobuf==3.11.2
 pyasn1==0.4.2
-pycrypto==2.6.1
+pycryptodome
 pyflakes==1.6.0
 pygobject==3.26.1
 pymagnitude==0.1.120
@@ -80,15 +80,12 @@ SecretStorage==2.3.1
 selenium==3.141.0
 singledispatch==3.4.0.3
 six==1.14.0
-sklearn==0.0
-subprocess32==3.5.4
 tensorboard==1.14.0
 tensorflow==1.14.0
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
 torch==0.4.1
 tqdm==4.41.0
-typing==3.7.4.1
 urllib3==1.25.10
 virtualenv==20.0.10
 Werkzeug==1.0.1
