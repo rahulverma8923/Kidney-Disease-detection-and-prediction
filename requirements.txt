@@ -65,7 +65,7 @@ pymagnitude==0.1.120
 pyodbc==4.0.17
 pyparsing==2.4.6
 python-dateutil==2.8.1
-pytz==2019.3
+pytz>=2023.3
 PyWavelets>=1.1.1
 pyxdg==0.25
 PyYAML==5.2
