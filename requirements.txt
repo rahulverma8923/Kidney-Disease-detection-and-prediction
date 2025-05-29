@@ -1,3 +1,4 @@
+numpy>=1.21.0
 absl-py==2.3.0
 annoy==1.17.3
 appdirs==1.4.4
@@ -72,7 +73,7 @@ requests==2.24.0
 scandir==1.10.0
 scikit-fuzzy==0.4.2
 scikit-image>=0.19.0
-scikit-learn==0.20.4
+scikit-learn>=1.2.0
 scipy==1.2.3
 SecretStorage==2.3.1
 selenium==3.141.0
