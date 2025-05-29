@@ -74,7 +74,7 @@ scandir==1.10.0
 scikit-fuzzy==0.4.2
 scikit-image>=0.19.0
 scikit-learn>=1.2.0
-scipy==1.2.3
+scipy>=1.11.4
 SecretStorage==2.3.1
 selenium==3.141.0
 singledispatch==3.4.0.3
