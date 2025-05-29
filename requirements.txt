@@ -49,9 +49,9 @@ monotonic==1.5
 mysql-connector-python==8.0.33
 networkx==2.2
 nltk==3.8.1
-numpy==1.25.0
+numpy==1.24.4
 opencv-contrib-python==4.11.0.86
-pandas==0.24.2
+pandas==1.5.3
 paramiko==2.0.0
 pathlib2==2.3.5
 pexpect==4.2.1
