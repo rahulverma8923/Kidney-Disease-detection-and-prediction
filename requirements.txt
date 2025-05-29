@@ -48,8 +48,8 @@ mock==3.0.5
 monotonic==1.5
 mysql-connector-python==8.0.33
 networkx==2.2
-nltk==3.4.5
-numpy==1.16.6
+nltk==3.8.1
+numpy==1.25.0
 opencv-contrib-python==4.2.0.32
 pandas==0.24.2
 paramiko==2.0.0
