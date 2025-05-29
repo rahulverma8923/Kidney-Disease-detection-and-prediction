@@ -83,7 +83,7 @@ tensorflow>=2.12
 tensorboard>=2.12
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
-torch==0.4.1
+torch>=2.0.0
 tqdm==4.41.0
 urllib3==1.25.10
 virtualenv==20.0.10
