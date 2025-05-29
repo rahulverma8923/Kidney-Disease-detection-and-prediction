@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kidney Disease Detection and Prediction System</title>
+  <meta content="Early detection and prediction of kidney disease" name="description">
+  <meta content="kidney disease, health, prediction, medical, diagnosis" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/aos/aos.css')}}" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+  
+  <!-- Additional custom styles -->
+  <style>
+    /* Enhanced Hero Section */
+    #hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{url_for('static',filename='img/hero-bg.png')}}");
+      background-size: cover;
+      background-position: center;
+    }
+    
+    #hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    #hero h2 {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: #f0f0f0;
+    }
+    
+    .btn-get-started {
+      padding: 15px 35px !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 15px rgba(124, 197, 118, 0.4);
+      border: 2px solid #7cc576;
+    }
+    
+    /* Improved section styles */
+    .section-title h2 {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #7cc576;
+      bottom: 0;
+      left: calc(50% - 25px);
+    }
+    
+    /* Enhanced form fields */
+    .form-control {
+      border-radius: 8px;
+      padding: 12px 15px;
+      border: 1px solid #e1e5eb;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: #7cc576;
+      box-shadow: 0 0 0 0.2rem rgba(124, 197, 118, 0.25);
+    }
+    
+    /* Improved select dropdown styling */
+    select.form-control {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 8px 10px;
+      padding-right: 2.5rem;
+      height: auto;
+      cursor: pointer;
+    }
+    
+    .form-control option {
+      padding: 10px;
+      font-size: 1rem;
+    }
+    
+    /* Additional select styling for better display */
+    select.form-control.select-active {
+      overflow: auto !important;
+      z-index: 1050;
+      border-color: #7cc576;
+      box-shadow: 0 0 0 0.2rem rgba(124, 197, 118, 0.25);
+    }
+    
+    select.form-control:not([size]):not([multiple]) {
+      height: calc(2.25rem + 10px);
+    }
+    
+    select.form-control option:hover,
+    select.form-control option:focus,
+    select.form-control option:active,
+    select.form-control option:checked {
+      background: linear-gradient(#f5f5f5, #f5f5f5);
+      background-color: #f5f5f5 !important;
+    }
+    
+    /* Ensure dropdowns are visible on mobile */
+    @media (max-width: 767.98px) {
+      select.form-control {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+      }
+      
+      .icon-box {
+        padding: 20px 15px;
+      }
+      
+      .icon-box .form-group {
+        margin-bottom: 0;
+      }
+    }
+    
+    /* Service boxes enhancements */
+    .icon-box {
+      padding: 25px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+    
+    .icon-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .icon-box i {
+      font-size: 32px;
+      color: #7cc576;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    
+    .icon-box h4 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    
+    /* Improved testimonials */
+    .testimonials {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("{{url_for('static',filename='img/testimonials-bg.jpg')}}") center center;
+      background-size: cover;
+      padding: 80px 0;
+    }
+    
+    .testimonial-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .testimonial-item p {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    /* Contact section improvements */
+    .contact .info {
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+    }
+    
+    .contact .info div {
+      margin-bottom: 20px;
+    }
+    
+    .contact .php-email-form {
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+    }
+    
+    .contact .php-email-form button[type="submit"] {
+      background: #7cc576;
+      border: 0;
+      padding: 12px 30px;
+      color: #fff;
+      border-radius: 8px;
+      transition: 0.4s;
+      font-weight: 600;
+    }
+    
+    .contact .php-email-form button[type="submit"]:hover {
+      background: #61b959;
+    }
+    
+    /* Footer improvements */
+    #footer {
+      background: #111;
+      color: #fff;
+    }
+    
+    .footer-logo img {
+      max-height: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .footer-top {
+      padding: 60px 0 30px;
+    }
+    
+    .footer-newsletter form {
+      position: relative;
+      margin-top: 30px;
+    }
+    
+    .footer-newsletter input[type="email"] {
+      border: 0;
+      padding: 12px 15px;
+      width: 70%;
+      border-radius: 8px 0 0 8px;
+    }
+    
+    .footer-newsletter input[type="submit"] {
+      border: 0;
+      background: #7cc576;
+      padding: 12px 15px;
+      width: 30%;
+      border-radius: 0 8px 8px 0;
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    
+    .footer-newsletter input[type="submit"]:hover {
+      background: #61b959;
+    }
+    
+    .social-links a {
+      font-size: 18px;
+      display: inline-block;
+      background: #262626;
+      color: #fff;
+      line-height: 1;
+      padding: 10px 0;
+      margin-right: 5px;
+      border-radius: 50%;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      transition: 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: #7cc576;
+    }
+  </style>
+  
+  <!-- Fix for dropdown selects -->
+  <style>
+    /* Simplified select styling to ensure proper dropdown functionality */
+    select.form-control {
+      padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+      background-size: 8px 10px;
+      height: calc(2.25rem + 8px);
+    }
+    
+    select.form-control::-ms-expand {
+      display: none;
+    }
+    
+    /* Override any styles that might be breaking dropdowns */
+    select.form-control {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    /* Fix for mobile devices */
+    @media (max-width: 767.98px) {
+      select.form-control {
+        font-size: 16px;
+        height: 38px;
+      }
+    }
+    
+    /* Bootstrap custom-select styling */
+    .custom-select {
+      display: inline-block;
+      width: 100%;
+      height: calc(2.25rem + 10px);
+      padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      vertical-align: middle;
+      background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+      background-size: 8px 10px;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      appearance: none;
+    }
+    
+    .custom-select:focus {
+      border-color: #7cc576;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(124, 197, 118, 0.25);
+    }
+    
+    /* Force correct display on all browsers */
+    select.form-control.custom-select {
+      appearance: menulist !important;
+      -webkit-appearance: menulist !important;
+      -moz-appearance: menulist !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="index.html" class="hero-logo" data-aos="zoom-in">
+        <img src="{{url_for('static',filename='img/hero-logo.png')}}" alt="Logo" height="120">
+      </a>
+      <h1 data-aos="zoom-in">Kidney Disease Detection & Prediction System</h1>
+      <h2 data-aos="fade-up">Early detection saves lives. Use our intelligent system to identify potential kidney disease risk and take control of your health today.</h2>
+      <div data-aos="fade-up">
+        <a href="#about" class="btn-get-started scrollto">Learn More</a>
+        <a href="#services" class="btn-get-started scrollto" style="background: transparent;">Take Test Now</a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="index.html"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Take a Test</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/login">Access Records</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>About Our System</h2>
+          <p>Early detection is crucial for kidney disease management</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="image">
+              <img src="{{url_for('static',filename='img/about.svg')}}" class="img-fluid" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3">
+              <h3>How Our System Works</h3>
+              <p>
+                Our Kidney Disease Detection and Prediction System uses advanced machine learning algorithms to analyze your medical parameters and predict the likelihood of kidney disease. Early detection can significantly improve treatment outcomes and quality of life.
+              </p>
+              <ul>
+                <li><i class="bx bx-check-double"></i> Fill out all required medical parameters in the test form</li>
+                <li><i class="bx bx-check-double"></i> Our system analyzes your data using validated prediction models</li>
+                <li><i class="bx bx-check-double"></i> Get instant results with recommendations for next steps</li>
+                <li><i class="bx bx-check-double"></i> Secure data handling with patient privacy protection</li>
+              </ul>
+              <p>
+                Kidney disease often shows no symptoms until advanced stages. Regular screening and early detection are vital for effective management and treatment. Our system helps identify potential issues before they become serious health problems.
+              </p>
+
+              <a href="#services" class="btn btn-success px-4 py-3 mt-3">Take a Test Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Take a Test</h2>
+          <p>Enter your medical parameters below for analysis</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1" >
+            <form action="/predict" method="POST">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
+              <i class="bx bx-user-circle"></i>
+              <h4>Age</h4>
+              <div class="form-group">
+                    <input required type="number" name="age" class="form-control" placeholder="Enter your age in years">
+            </div>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-heart"></i>
+              <h4>Blood Pressure</h4>
+              <div class="form-group">
+                    <input required type="number" name="bp" class="form-control" placeholder="Enter blood pressure in mm/Hg">  
+            </div>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-test-tube"></i>
+              <h4>Sugar Level</h4>
+              <div class="form-group">
+                    <select required name="sugar" class="form-control custom-select">
+                            <option value="" disabled selected>Select sugar level (0-4)</option>
+                            <option value="0">0 - Normal</option>
+                            <option value="1">1 - Slightly Elevated</option>
+                            <option value="2">2 - Moderately Elevated</option>
+                            <option value="3">3 - Highly Elevated</option>
+                            <option value="4">4 - Very High</option>
+                        </select>
+              </div>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-plus-medical"></i>
+              <h4>Pus Cell</h4>
+              <div class="form-group">
+                    <select required name="pc" class="form-control custom-select">
+                            <option value="" disabled selected>Select pus cell status</option>
+                            <option value="1">Normal</option>
+                            <option value="0">Abnormal</option>
+                        </select>
+              </div>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-plus-medical"></i>
+              <h4>Pus Cell Clumps</h4>
+              <div class="form-group">
+                    <select required name="pcc" class="form-control custom-select">
+                            <option value="" disabled selected>Select pus cell clumps status</option>
+                            <option value="0">Not Present</option>
+                            <option value="1">Present</option>
+                        </select>
+              </div>
+            </div>
+           
+
+          </div>
+            <div class="col-lg-6 order-2 order-lg-1"> 
+
+                <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+                    <i class="bx bx-test-tube"></i>
+                            <h4>Sodium Level</h4>
+                            <div class="form-group">
+                                    <input required type="number" name="sodium" class="form-control" placeholder="Enter sodium level in mEq/L">
+                           </div>
+                </div>
+
+
+              <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
+                <i class="bx bx-drop"></i>
+                <h4>Hemoglobin</h4>
+                <div class="form-group">
+                        <input required type="any" name="hemo" class="form-control" placeholder="Enter hemoglobin level in gms">
+                </div>
+              </div>
+              <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-heart-circle"></i>
+                <h4>Hypertension</h4>
+                <div class="form-group">
+                        <select required name="htn" class="form-control custom-select">
+                                <option value="" disabled selected>Do you have hypertension?</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                </div>
+              </div>
+              <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-pulse"></i>
+                <h4>Diabetes Mellitus</h4>
+                <div class="form-group">
+                        <select required name="db" class="form-control custom-select">
+                                <option value="" disabled selected>Do you have diabetes?</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                </div>
+              </div>
+              <div class="text-center mt-5 mb-3">
+                <button type="submit" class="btn btn-success btn-lg px-5 py-3" style="font-weight: 600; font-size: 18px;">
+                  <i class="bx bx-analyse mr-2"></i> Get Results
+                </button>
+              </div>
+            </form>
+
+            </div><!--End of 2nd col-->
+        </div>
+      </div>
+    </section><!-- End Services Section -->
+
+    
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+        <div class="section-title text-white">
+          <h2 style="color: white;">Patient Stories</h2>
+          <p style="color: #ddd;">What people say about early detection</p>
+        </div>
+        <div class="quote-icon">
+          <i class="bx bxs-quote-right"></i>
+        </div>
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <p>
+                "Early detection of my kidney condition made all the difference. The treatment was much more effective and I'm now living a normal life."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
+            <h3>John Davis</h3>
+            <h4>Recovered Patient</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+                "Regular screening helped catch my kidney disease in its early stages. I'm thankful for technologies that make this possible."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+            <h3>Sara Wilson</h3>
+            <h4>Healthcare Advocate</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+                "Knowledge is power. Knowing my kidney health status has empowered me to make better lifestyle choices every day."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
+            <h3>Michael Chen</h3>
+            <h4>Wellness Coach</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+                "Prevention is better than cure. This simple test gave me peace of mind about my kidney health."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
+            <h3>Jessica Williams</h3>
+            <h4>Healthcare Professional</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+                "Being positive and proactive about my health has made all the difference. Regular screening is now part of my healthcare routine."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
+            <h3>Robert Johnson</h3>
+            <h4>Health Awareness Advocate</h4>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Contact Us</h2>
+          <p>Get in touch with our healthcare professionals</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Knowledge Park 3,<br>Greater Noida, 201310</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@kidneyhealthsystem.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+91 1234567890</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <a href="#header" class="scrollto footer-logo"><img src="{{url_for('static',filename='img/hero-logo.png')}}" alt=""></a>
+            <h3>Kidney Disease Detection System</h3>
+            <p class="mt-3">Early detection and proactive management of kidney health can significantly improve quality of life and treatment outcomes.</p>
+          </div>
+        </div>
+
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6">
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>2024</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery-sticky/jquery.sticky.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/aos/aos.js')}}"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+  <!-- Custom JS for Form Elements -->
+  <script>
+    // Simpler approach for dropdown menus
+    document.addEventListener("DOMContentLoaded", function() {
+      // Reset any problematic styles that might be affecting dropdowns
+      const selects = document.querySelectorAll('select.form-control');
+      
+      selects.forEach(select => {
+        // Remove any custom attributes that might be interfering
+        select.removeAttribute('size');
+        select.classList.remove('select-active');
+        
+        // Ensure dropdowns are clickable
+        select.addEventListener('click', function(e) {
+          // This helps trigger native dropdown behavior
+          e.stopPropagation();
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

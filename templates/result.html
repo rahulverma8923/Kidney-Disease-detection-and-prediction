@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kidney Disease Detection and Prediction System - Results</title>
+  <meta content="View your kidney health test results" name="description">
+  <meta content="kidney disease, health, prediction, results, medical, diagnosis" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/aos/aos.css')}}" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+
+  <!-- Additional custom styles -->
+  <style>
+    /* Enhanced Hero Section */
+    #hero {
+      min-height: 60vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("{{url_for('static',filename='img/hero-bg.png')}}");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+    }
+    
+    #hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Scroll down indicator */
+    .scroll-down-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+      z-index: 10;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+    }
+    
+    .scroll-down-indicator p {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    .scroll-down-indicator i {
+      font-size: 28px;
+      color: #7cc576;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+    
+    /* Mobile responsive styles for scroll indicator */
+    @media (max-width: 767.98px) {
+      .scroll-down-indicator {
+        bottom: 20px;
+      }
+      
+      .scroll-down-indicator p {
+        font-size: 0.9rem;
+      }
+      
+      .scroll-down-indicator i {
+        font-size: 22px;
+      }
+    }
+    
+    .result-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-top: -100px;
+      position: relative;
+      z-index: 1000;
+      margin-bottom: 50px;
+    }
+    
+    .healthy-result {
+      border-top: 5px solid #7cc576;
+    }
+    
+    .risk-result {
+      border-top: 5px solid #e74c3c;
+    }
+    
+    .result-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .healthy-icon {
+      color: #7cc576;
+    }
+    
+    .risk-icon {
+      color: #e74c3c;
+    }
+    
+    .result-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .recommendation-card {
+      border-left: 4px solid #7cc576;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .recommendation-title {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .recommendation-title i {
+      margin-right: 10px;
+      color: #7cc576;
+    }
+    
+    .youtube-section {
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .action-buttons {
+      margin-top: 30px;
+    }
+    
+    .btn-next-steps {
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-healthy {
+      background-color: #7cc576;
+      border-color: #7cc576;
+      color: #fff;
+    }
+    
+    .btn-healthy:hover {
+      background-color: #68b463;
+      color: #fff;
+    }
+    
+    .btn-risk {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      color: #fff;
+    }
+    
+    .btn-risk:hover {
+      background-color: #d44637;
+      color: #fff;
+    }
+    
+    .btn-home {
+      background-color: #343a40;
+      border-color: #343a40;
+      color: #fff;
+    }
+    
+    .btn-home:hover {
+      background-color: #23272b;
+      color: #fff;
+    }
+    
+    .result-details {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    
+    /* Enhanced testimonials section */
+    .testimonials {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("{{url_for('static',filename='img/testimonials-bg.jpg')}}") center center;
+      background-size: cover;
+      padding: 80px 0;
+    }
+    
+    .testimonial-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Section headers */
+    .section-title h2 {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #7cc576;
+      bottom: 0;
+      left: calc(50% - 25px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <a href="/" class="hero-logo" data-aos="zoom-in">
+            <img src="{{url_for('static',filename='img/hero-logo.png')}}" alt="Logo" height="120">
+          </a>
+          <h1 data-aos="zoom-in">Your Kidney Health Results</h1>
+          <h2 data-aos="fade-up" class="text-white">Knowledge is the first step towards better health management</h2>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll down indicator -->
+    <div class="scroll-down-indicator">
+      <p>Scroll down to see your results</p>
+      <i class="bx bx-chevron-down"></i>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="/"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li><a href="/">Home</a></li>
+          <li class="active"><a href="#">Results</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/login">Access Records</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <!-- Results Section -->
+    <section id="results" class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            {% if result == 0 %}
+            <!-- Risk Result -->
+            <div class="result-card risk-result text-center" data-aos="fade-up">
+              <div class="result-icon risk-icon">
+                <i class="bx bx-error-circle"></i>
+              </div>
+              <h2 class="result-title">Risk of Kidney Disease Detected</h2>
+              <p class="lead">Our analysis indicates that you may have signs of chronic kidney disease. Early detection is crucial for effective management.</p>
+              
+              <div class="recommendation-card mt-4 text-left">
+                <h4 class="recommendation-title"><i class="bx bx-health"></i>What This Means</h4>
+                <p>This result suggests that your kidney function may be compromised. It's important to consult with a healthcare professional for a complete evaluation and proper diagnosis.</p>
+                
+                <h4 class="recommendation-title mt-4"><i class="bx bx-check-shield"></i>Next Steps</h4>
+                <ul class="text-left">
+                  <li>Schedule an appointment with a nephrologist (kidney specialist)</li>
+                  <li>Bring these test results to your healthcare provider</li>
+                  <li>Follow up with additional diagnostic tests as recommended</li>
+                  <li>Consider lifestyle modifications to support kidney health</li>
+                </ul>
+              </div>
+              
+              <div class="action-buttons">
+                <a href="#resources" class="btn btn-next-steps btn-risk mx-2"><i class="bx bx-book-reader mr-1"></i> Learn More</a>
+                <a href="/" class="btn btn-next-steps btn-home mx-2"><i class="bx bx-home mr-1"></i> Return Home</a>
+              </div>
+            </div>
+            {% else %}
+            <!-- Healthy Result -->
+            <div class="result-card healthy-result text-center" data-aos="fade-up">
+              <div class="result-icon healthy-icon">
+                <i class="bx bx-check-shield"></i>
+              </div>
+              <h2 class="result-title">No Signs of Kidney Disease Detected</h2>
+              <p class="lead">Great news! Based on the parameters you provided, we did not detect any indication of kidney disease.</p>
+              
+              <div class="recommendation-card mt-4 text-left">
+                <h4 class="recommendation-title"><i class="bx bx-health"></i>Maintaining Kidney Health</h4>
+                <p>While your results are good, it's important to continue practicing healthy habits to maintain optimal kidney function:</p>
+                <ul class="text-left">
+                  <li>Stay well-hydrated by drinking plenty of water</li>
+                  <li>Maintain a balanced diet low in sodium</li>
+                  <li>Exercise regularly</li>
+                  <li>Monitor your blood pressure and blood sugar levels</li>
+                  <li>Limit alcohol consumption</li>
+                  <li>Avoid smoking</li>
+                </ul>
+              </div>
+              
+              <div class="action-buttons">
+                <a href="#resources" class="btn btn-next-steps btn-healthy mx-2"><i class="bx bx-book-reader mr-1"></i> Health Resources</a>
+                <a href="/" class="btn btn-next-steps btn-home mx-2"><i class="bx bx-home mr-1"></i> Return Home</a>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="services section-bg">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Helpful Resources</h2>
+          <p>Learn more about kidney health and management</p>
+        </div>
+
+        <div class="row">
+          {% if result == 0 %}
+          <div class="col-lg-12 mb-4" data-aos="fade-up">
+            <div class="icon-box">
+              <i class="bx bx-video"></i>
+              <h4>Educational Videos</h4>
+              <p>These videos provide valuable information about understanding and managing kidney disease.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-6" data-aos="fade-right">
+            <div class="youtube-section">
+              <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/c6DgAa0N3ME?controls=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <h5>Understanding Chronic Kidney Disease</h5>
+            </div>
+          </div>
+          
+          <div class="col-md-6" data-aos="fade-left">
+            <div class="youtube-section">
+              <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/3wQupeZITRA?controls=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <h5>Managing Kidney Health</h5>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="icon-box">
+              <i class="bx bx-water"></i>
+              <h4>Hydration</h4>
+              <p>Staying well-hydrated helps your kidneys function properly. Aim for 8 glasses of water daily to flush toxins from your body.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <i class="bx bx-food-menu"></i>
+              <h4>Healthy Diet</h4>
+              <p>A balanced diet low in salt and processed foods supports kidney health. Include plenty of fruits, vegetables, and whole grains.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box">
+              <i class="bx bx-heart"></i>
+              <h4>Blood Pressure</h4>
+              <p>Regular monitoring of your blood pressure is important as hypertension is a leading cause of kidney damage.</p>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+        <div class="section-title text-white">
+          <h2 style="color: white;">Patient Stories</h2>
+          <p style="color: #ddd;">Experiences with kidney health management</p>
+        </div>
+        
+        <div class="owl-carousel testimonials-carousel">
+          <div class="testimonial-item">
+            <p>
+              "Early detection of my kidney condition made all the difference. The treatment was much more effective and I'm now living a normal life."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
+            <h3>John Davis</h3>
+            <h4>Recovered Patient</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              "Regular screening helped catch my kidney disease in its early stages. I'm thankful for technologies that make this possible."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+            <h3>Sara Wilson</h3>
+            <h4>Healthcare Advocate</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              "Knowledge is power. Knowing my kidney health status has empowered me to make better lifestyle choices every day."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
+            <h3>Michael Chen</h3>
+            <h4>Wellness Coach</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              "Prevention is better than cure. This simple test gave me peace of mind about my kidney health."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
+            <h3>Jessica Williams</h3>
+            <h4>Healthcare Professional</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              "Being positive and proactive about my health has made all the difference. Regular screening is now part of my healthcare routine."
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
+            <h3>Robert Johnson</h3>
+            <h4>Health Awareness Advocate</h4>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Contact Us</h2>
+          <p>Get in touch with our healthcare professionals</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Knowledge Park 3,<br>Greater Noida, 201310</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@kidneyhealthsystem.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+91 1234567890</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <a href="/" class="scrollto footer-logo"><img src="{{url_for('static',filename='img/hero-logo.png')}}" alt=""></a>
+            <h3>Kidney Disease Detection System</h3>
+            <p class="mt-3">Early detection and proactive management of kidney health can significantly improve quality of life and treatment outcomes.</p>
+          </div>
+        </div>
+
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6">
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>2024</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery-sticky/jquery.sticky.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/aos/aos.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+  
+  <!-- Custom scroll indicator functionality -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get the scroll indicator element
+      const scrollIndicator = document.querySelector('.scroll-down-indicator');
+      
+      if (scrollIndicator) {
+        // Add click event to smooth scroll to results section
+        scrollIndicator.addEventListener('click', function() {
+          const resultsSection = document.getElementById('results');
+          if (resultsSection) {
+            resultsSection.scrollIntoView({ 
+              behavior: 'smooth'
+            });
+          }
+        });
+        
+        // Hide scroll indicator when user scrolls down
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 200) {
+            scrollIndicator.style.opacity = '0';
+            setTimeout(() => {
+              scrollIndicator.style.display = 'none';
+            }, 500);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
