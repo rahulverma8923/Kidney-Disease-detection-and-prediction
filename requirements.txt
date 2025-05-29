@@ -63,7 +63,6 @@ pyflakes==1.6.0
 pymagnitude==0.1.120
 pyodbc==4.0.17
 pyparsing==2.4.6
-pysqlite==2.7.0
 python-dateutil==2.8.1
 pytz==2019.3
 PyWavelets==1.0.3
